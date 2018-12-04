@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Game from './Game';
 import { StyleSheet, css } from 'aphrodite';
 
 import colors from '../common/colors';
+import Game from './Game';
 
 const styles = StyleSheet.create({
   home: {

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-
-import Question from './Question';
-import ProgressBar from './ProgressBar';
-
 import { StyleSheet, css } from 'aphrodite';
-//
+
+import ProgressBar from './ProgressBar';
+import Question from './Question';
+
 const styles = StyleSheet.create({
   progressBarContainer: {
     display: 'flex',

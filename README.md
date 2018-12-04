@@ -14,16 +14,18 @@ The admin panel code is stored in a [different github repo]('https://github.com/
 (mainly to make it easier for me to deploy to Heroku.)
 
 
-You can edit, edit, or delete any of the database objects from the admin panel. 
-It uses `sequelize`, which was 
-a new library to me. If I had more time with this project, I'd probably convert the game app to use 
-`sequelize` as well to make things more consistent. 
+You can edit, edit, or delete any of the database objects from the admin panel by clicking on 
+"Data", and then clicking the green plus sign or clicking on an existing item and going to "Actions" 
+or "Edit". 
+
+Forest Lumber uses `sequelize`, and if I had more time with this project, I'd probably convert the 
+game app to use `sequelize` as well to make things more consistent. 
 
 ### Game 
 
 The game uses Aphrodite for Javascript inline styles, which is a nice CSS-in-JS library for keeping 
-everything in Javascript. 
-
-
+everything in Javascript. I used bars for the token levels since it reminded me the most of an RPG, 
+but ideally those should be updated to have different colors. I would also like to make it so 
+that the game's questions are asked in random orders and can be repeated. 
 
 ### How to use the admin panel 
