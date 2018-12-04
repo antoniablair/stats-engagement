@@ -27,5 +27,4 @@ The game uses Aphrodite for Javascript inline styles, which is a nice CSS-in-JS 
 everything in Javascript. I used bars for the token levels since it reminded me the most of an RPG, 
 but ideally those should be updated to have different colors. I would also like to make it so 
 that the game's questions are asked in random orders and can be repeated. 
-
-### How to use the admin panel 
+ 
