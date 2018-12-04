@@ -62,7 +62,6 @@ class GameLogicContainer extends Component {
 
     await this.callApi(`/api/game/${this.state.gameId}/question_tokens`)
       .then(res => {
-        console.log(res.questionTokens);
         this.setState({ questionTokens: res.questionTokens }) })
       .catch(err => console.log(err));
   }
@@ -131,7 +130,6 @@ class GameLogicContainer extends Component {
   answerQuestion = (questionId, bool) => {
     let tokens = this.state.tokens;
     const affectedQuestionTokens = this.state.questionTokens.filter(qt => qt.question_id === questionId);
-    console.log(affectedQuestionTokens);
 
     let tokensToUpdate = [];
 
