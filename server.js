@@ -4,9 +4,6 @@ const path = require('path');
 const app = express();
 const mysql = require('mysql');
 const config = require('./config');
-// import config from 'config';
-
-// TODO: use only import 
 
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
@@ -17,31 +14,28 @@ const connection = mysql.createConnection({
   user     : config.user,
   password : config.password,
   database : config.database,
+  port     : config.port
 });
 
 connection.connect();
 
 // API calls
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
-
 app.get('/api/game/:gameId', (req, res) => {
   const gameId = req.params.gameId;
   connection.query(`SELECT * FROM games WHERE id = ${gameId};`, function (error, results, fields) {
     if (error) throw error;
-    res.send({ games: results });
+    res.send({ game: results[0] });
   });
 });
 
-app.get('/api/questions/', (req, res) => {
+app.get('/api/game/:gameId/questions', (req, res) => {
+  const gameId = req.params.gameId;
   connection.query(
-    `SELECT * FROM questions;`, 
+    `SELECT q.* FROM questions q JOIN games g ON q.game_id = g.id WHERE g.id = ${gameId};`,
   function (error, results, fields) {
     if (error) throw error;
     res.send({ questions: results });
   });
-  // connection.end();
 });
 
 app.get('/api/tokens', (req, res) => {
@@ -51,28 +45,23 @@ app.get('/api/tokens', (req, res) => {
   });
 });
 
-app.get('/api/question_tokens', (req, res) => {
-  connection.query(`SELECT * FROM question_tokens`, function (error, results, fields) {
+app.get('/api/game/:gameId/question_tokens', (req, res) => {
+  const gameId = req.params.gameId;
+  connection.query(
+    `
+      SELECT * FROM question_tokens qt 
+      JOIN questions q ON qt.question_id = q.id 
+      WHERE q.id IN 
+        (
+          SELECT q.id 
+          FROM questions q 
+          JOIN games g ON q.game_id = g.id 
+          WHERE g.id = ${gameId}
+         );
+    `, function (error, results, fields) {
     if (error) throw error;
     res.send({ questionTokens: results });
   });
-});
-
-app.get('/api/pets', function (req, res) {
-  connection.connect();
-
-  connection.query('SELECT * FROM pet', function (error, results, fields) {
-    if (error) throw error;
-    res.send({ pets: results });
-  });
-  connection.end();
-});
-
-app.post('/api/world', (req, res) => {
-  console.log('WORLD');
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`,
-  );
 });
 
 if (process.env.NODE_ENV === 'production') {
