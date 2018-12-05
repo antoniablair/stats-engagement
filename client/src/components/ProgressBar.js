@@ -26,6 +26,7 @@ const Filler = ({ percentage }) => {
 };
 
 const ProgressBar = ({ name, level }) => {
+  // todo: make backend support more than 0-5
   const percentage = ((level / 5) * 100);
   return (
   <div>
