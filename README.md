@@ -1,30 +1,36 @@
+## About
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
 The front-end is a React application, with Node and Express for the backend. 
 
-On the database level, I decided to set up `games`, `tokens`, `questions`, and an intermediary table called 
+On the database level, I set up `games`, `tokens`, `questions`, and an intermediary table called 
 `question_tokens` containing the "rules" between a question and a token. 
+
+<img src="https://github.com/antoniablair/stats-engagement/blob/master/client/src/images/screenshot.png" width="500">
 
 ###  Admin
 
 In order to have a visual and easy-to-use admin panel for this project without sacrificing too much
 time that could be spent on the gameplay, I used an open source library called Forest Lumber to generate an 
-admin panel. 
+admin panel to support working with my application's database. Forest Lumber generates some code based on schema and then I made some updates to make it work with the table's relationships / foreign keys. 
 
 The admin panel code is stored in a [different github repo]('https://github.com/antoniablair/stats-engagement-admin') 
 (mainly to make it easier for me to deploy to Heroku.)
 
-
 You can edit, edit, or delete any of the database objects from the admin panel by clicking on 
-"Data", and then clicking the green plus sign or clicking on an existing item and going to "Actions" 
+"Data", and then clicking the green plus sign. To edit, go to any item and then click "Actions" 
 or "Edit". 
 
-Forest Lumber uses `sequelize`, and if I had more time with this project, I'd probably convert the 
-game app to use `sequelize` as well to make things more consistent. 
+Forest Lumber uses the `sequelize` ORM, and if I had more time with this project, I might convert the 
+game app to use `sequelize` as well to make things more consistent, rather than calling SQL queries in `server.js`.  
 
 ### Game 
 
 The game uses Aphrodite for Javascript inline styles, which is a nice CSS-in-JS library for keeping 
 everything in Javascript. I used bars for the token levels since it reminded me the most of an RPG, 
-but ideally those should be updated to have different colors. I would also like to make it so 
-that the game's questions are asked in random orders and can be repeated. 
+but ideally those should be updated to have different colors.  Right now, the game works on phones but needs more work on its responsive styles. 
  
+### ToDos:
+I added the concept of "rounds" but didn't yet implement them as a limiting factor to how long the game is. 
+If worked on further, I would also need to spend more time spent on the design and layout, as it is a bit clunky right now.  I would also like to make it so 
+that the game's questions are asked in random orders and can be repeated.
