@@ -32,8 +32,8 @@ everything in Javascript. (CSS would work just as well too, though!) While runni
 
 ### ToDos:
 - I added the concept of "rounds" but didn't yet implement them in! (whoops)
-- Spend more time spent on the design and layout, as it is a bit clunky right now.  - I would also like to make it so 
-that the game's questions are asked in random orders and can be repeated.
+- Spend more time on the design and layout, as it is a bit clunky right now.  
+- Make it so that the game's questions are asked in random orders and that questions can be repeating, so that game can go on forever, just like a real cat.
 - I used bars for the token levels since it reminded me the most of an RPG, 
 but ideally those should be updated to have different colors, and actually display 0-5 nodes.
 - Improve the game's responsive styles and overall layout.
