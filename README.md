@@ -14,9 +14,7 @@ On the database level, I set up `games`, `tokens`, `questions`, and an intermedi
 
 ###  Admin
 
-In order to have a visual and easy-to-use admin panel for this project without sacrificing too much
-time that could be spent on the gameplay, I used an open source library called Forest Lumber to generate an 
-admin panel to support working with my application's database. Forest Lumber generates some code based on schema and then I made some updates to make it work with the table's relationships / foreign keys. 
+In order to have a visual and easy-to-use admin panel for this project without taking time away from the front-end, I used an open source library called Forest Lumber to generate an admin panel. Forest Lumber generates some code based on my database's schema and then I made some updates to make it work with the table's relationships / foreign keys. 
 
 The admin panel code is stored in a [different github repo]('https://github.com/antoniablair/stats-engagement-admin') 
 (mainly to make it easier for me to deploy to Heroku.)
