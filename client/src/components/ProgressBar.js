@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     width: '350px',
     borderRadius: '50px',
     border: '1px solid #fff',
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
 
   filler: {

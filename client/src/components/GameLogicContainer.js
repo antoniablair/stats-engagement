@@ -103,8 +103,6 @@ class GameLogicContainer extends Component {
     } else {
       this.setState({ ...this.state.questions, answeredQuestion });
     }
-
-    this.setState({ ...this.state.questions, answeredQuestion });
   };
 
   calculateTokenLevels = (affectedToken, questionToken, bool) => {
