@@ -28,7 +28,6 @@ class GameLogicContainer extends Component {
   componentDidMount() {
 
     // Fetch all of the game rules
-
     this.callApi(`/api/game/${this.state.gameId}`)
       .then(res => {
         this.setState({
@@ -60,7 +59,7 @@ class GameLogicContainer extends Component {
         this.setState({ tokens}) })
       .catch(err => console.log(err));
 
-    await this.callApi(`/api/game/${this.state.gameId}/question_tokens`)
+    this.callApi(`/api/game/${this.state.gameId}/question_tokens`)
       .then(res => {
         this.setState({ questionTokens: res.questionTokens }) })
       .catch(err => console.log(err));
@@ -129,12 +128,9 @@ class GameLogicContainer extends Component {
     let tokens = this.state.tokens;
     const affectedQuestionTokens = this.state.questionTokens.filter(qt => qt.question_id === questionId);
 
-    let tokensToUpdate = [];
-
-    affectedQuestionTokens.map(qt => {
+    const tokensToUpdate = affectedQuestionTokens.map(qt => {
       let affectedToken = tokens.filter(t => t.id === qt.token_id)[0];
-      const tokenWithUpdatedLevels = this.calculateTokenLevels(affectedToken, qt, bool);
-      tokensToUpdate.push(tokenWithUpdatedLevels);
+      return this.calculateTokenLevels(affectedToken, qt, bool);
     });
 
     this.updateTokensState(tokensToUpdate);
