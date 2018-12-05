@@ -2,7 +2,7 @@
 
 Check out the [application on Heroku](https://stats-engagement.herokuapp.com/).
 <br/>
-If you have login credentials, view the admin [here](https://app.forestadmin.com/34534/data/) or check out its git repo [here]('https://github.com/antoniablair/stats-engagement-admin').
+If you have login credentials, view the admin [here](https://app.forestadmin.com/34534/data/) or check out its git repo [here](https://github.com/antoniablair/stats-engagement-admin).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
 The front-end is a React application, with Node and Express for the backend. 
