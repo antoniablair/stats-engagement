@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
+import callApi from '../utils/api';
 import calculateTokenLevels from '../utils/tokens';
 import colors from '../common/colors';
 import Game from './Game';
@@ -28,51 +29,43 @@ class GameLogicContainer extends Component {
   };
 
   componentDidMount() {
-
     // Fetch all of the game rules
-    this.callApi(`/api/game/${this.state.gameId}`)
-      .then(res => {
-        this.setState({
-          numberOfRounds: res.game.numberOfRounds,
-          name: res.game.name,
-        });
-      })
-      .catch(err => console.log(err));
+    callApi(`/api/game/${this.state.gameId}`)
+    .then(res => {
+      this.setState({
+        numberOfRounds: res.game.numberOfRounds,
+        name: res.game.name,
+      });
+    })
+    .catch(err => console.log(err));
 
-    this.callApi(`/api/game/${this.state.gameId}/questions`)
-      .then(res => {
-        let questions = res.questions.map((q, idx) => {
-          if (idx > 0) {
-            q.displayed = false;
-            q.answered = false;
-          } else {
-            q.displayed = true;
-          }
-          return q;
-        });
-        this.setState({ questions: questions })
-      })
-      .catch(err => console.log(err));
+    callApi(`/api/game/${this.state.gameId}/questions`)
+    .then(res => {
+      let questions = res.questions.map((q, idx) => {
+        if (idx > 0) {
+          q.displayed = false;
+          q.answered = false;
+        } else {
+          q.displayed = true;
+        }
+        return q;
+      });
+      this.setState({ questions: questions })
+    })
+    .catch(err => console.log(err));
 
-    this.callApi('/api/tokens')
-      .then(res => {
-        // Add token.level numbers (4/5 to start!)
-        let tokens = res.tokens.map(t => { t.level = 4; return t });
-        this.setState({ tokens}) })
-      .catch(err => console.log(err));
+    callApi('/api/tokens')
+    .then(res => {
+      // Add token.level numbers (4/5 to start!)
+      let tokens = res.tokens.map(t => { t.level = 4; return t });
+      this.setState({ tokens}) })
+    .catch(err => console.log(err));
 
-    this.callApi(`/api/game/${this.state.gameId}/question_tokens`)
-      .then(res => {
-        this.setState({ questionTokens: res.questionTokens }) })
-      .catch(err => console.log(err));
+    callApi(`/api/game/${this.state.gameId}/question_tokens`)
+    .then(res => {
+      this.setState({ questionTokens: res.questionTokens }) })
+    .catch(err => console.log(err));
   }
-
-  callApi = async (endpoint) => {
-    const response = await fetch(endpoint);
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    return body;
-  };
 
   answerQuestion = (questionId, bool) => {
     let tokens = this.state.tokens;
