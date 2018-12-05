@@ -25,11 +25,11 @@ class GameLogicContainer extends Component {
     gameId: 5
   };
 
-  async componentDidMount() {
+  componentDidMount() {
 
     // Fetch all of the game rules
 
-    await this.callApi(`/api/game/${this.state.gameId}`)
+    this.callApi(`/api/game/${this.state.gameId}`)
       .then(res => {
         this.setState({
           numberOfRounds: res.game.numberOfRounds,
@@ -38,7 +38,7 @@ class GameLogicContainer extends Component {
       })
       .catch(err => console.log(err));
 
-    await this.callApi(`/api/game/${this.state.gameId}/questions`)
+    this.callApi(`/api/game/${this.state.gameId}/questions`)
       .then(res => {
         let questions = res.questions.map((q, idx) => {
           if (idx > 0) {
@@ -53,7 +53,7 @@ class GameLogicContainer extends Component {
       })
       .catch(err => console.log(err));
 
-    await this.callApi('/api/tokens')
+    this.callApi('/api/tokens')
       .then(res => {
         // Add token.level numbers (4/5 to start!)
         let tokens = res.tokens.map(t => { t.level = 4; return t });
