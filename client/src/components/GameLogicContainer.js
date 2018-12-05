@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
  * Fetches from APIs and handles all of the game logic.
  */
 
+// todo: allow user to choose which game
 class GameLogicContainer extends Component {
   state = {
     questions: [],
@@ -38,7 +39,6 @@ class GameLogicContainer extends Component {
       })
       .catch(err => console.log(err));
 
-    // todo: limit the game play to numberOfRounds
     this.callApi(`/api/game/${this.state.gameId}/questions`)
       .then(res => {
         let questions = res.questions.map((q, idx) => {
@@ -100,6 +100,7 @@ class GameLogicContainer extends Component {
   };
 
   showNextUnansweredQuestion = (questionId) => {
+    // todo: limit the game play to state.numberOfRounds
     const unansweredQuestions = this.state.questions.filter(q => (
       q.id !== questionId &&
       q.answered === false &&
