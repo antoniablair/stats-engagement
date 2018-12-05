@@ -29,8 +29,10 @@ game app to use `sequelize` as well to make things more consistent, rather than 
 ### Game 
 
 The game uses Aphrodite for Javascript inline styles, which is a nice CSS-in-JS library for keeping 
-everything in Javascript. I used bars for the token levels since it reminded me the most of an RPG, 
-but ideally those should be updated to have different colors.  Right now, the game works on phones but needs more work on its responsive styles. 
+everything in Javascript. (CSS would work just as well too, though!) 
+
+I used bars for the token levels since it reminded me the most of an RPG, 
+but ideally those should be updated to have different colors. Right now, the game 'sort of' works on different devices and needs more work on its responsive styles and overall layout. 
  
 ### ToDos:
 I added the concept of "rounds" but didn't yet implement them as a limiting factor to how long the game is. 
