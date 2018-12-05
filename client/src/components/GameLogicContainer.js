@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
+import calculateTokenLevels from '../utils/tokens';
 import colors from '../common/colors';
 import Game from './Game';
 
@@ -37,6 +38,7 @@ class GameLogicContainer extends Component {
       })
       .catch(err => console.log(err));
 
+    // todo: limit the game play to numberOfRounds
     this.callApi(`/api/game/${this.state.gameId}/questions`)
       .then(res => {
         let questions = res.questions.map((q, idx) => {
@@ -72,7 +74,20 @@ class GameLogicContainer extends Component {
     return body;
   };
 
-  // state modifications below
+  answerQuestion = (questionId, bool) => {
+    let tokens = this.state.tokens;
+    const affectedQuestionTokens = this.state.questionTokens.filter(qt => qt.question_id === questionId);
+
+    const tokensToUpdate = affectedQuestionTokens.map(qt => {
+      let affectedToken = tokens.filter(t => t.id === qt.token_id)[0];
+      return calculateTokenLevels(affectedToken, qt, bool);
+    });
+
+    this.updateTokensState(tokensToUpdate);
+    this.showNextUnansweredQuestion(questionId);
+  };
+
+  // state modifications
   updateTokensState = (tokensToUpdate) => {
     this.setState({ ...this.state.tokens, tokensToUpdate });
   };
@@ -102,39 +117,6 @@ class GameLogicContainer extends Component {
     } else {
       this.setState({ ...this.state.questions, answeredQuestion });
     }
-  };
-
-  calculateTokenLevels = (affectedToken, questionToken, bool) => {
-    let token = affectedToken;
-
-    if (bool === true) {
-      token.level += parseInt(questionToken.points_if_true);
-    } else if (bool === false) {
-      token.level += parseInt(questionToken.points_if_false);
-    }
-
-    if (token.level > 5) {
-      token.level = 5;
-    }
-
-    if (token.level < 0) {
-      token.level = 0;
-    }
-
-    return token;
-  };
-
-  answerQuestion = (questionId, bool) => {
-    let tokens = this.state.tokens;
-    const affectedQuestionTokens = this.state.questionTokens.filter(qt => qt.question_id === questionId);
-
-    const tokensToUpdate = affectedQuestionTokens.map(qt => {
-      let affectedToken = tokens.filter(t => t.id === qt.token_id)[0];
-      return this.calculateTokenLevels(affectedToken, qt, bool);
-    });
-
-    this.updateTokensState(tokensToUpdate);
-    this.showNextUnansweredQuestion(questionId);
   };
 
   render() {
