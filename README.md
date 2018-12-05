@@ -1,6 +1,7 @@
 ## About
 
 View the game at: [https://stats-engagement.herokuapp.com/](https://stats-engagement.herokuapp.com/)
+<br/>
 View the admin at: [https://app.forestadmin.com/34534/data/](https://app.forestadmin.com/34534/data/) with the username and password supplied, or check out its git repo [here]('https://github.com/antoniablair/stats-engagement-admin').
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
