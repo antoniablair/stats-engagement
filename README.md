@@ -28,15 +28,13 @@ game app to use `sequelize` as well to make things more consistent, rather than 
 
 ### Game 
 The game uses Aphrodite for Javascript inline styles, which is a nice CSS-in-JS library for keeping 
-everything in Javascript. (CSS would work just as well too, though!) 
+everything in Javascript. (CSS would work just as well too, though!) While running, it keeps track of each's token's "level" from 0-5, and then displays that in a percentage form in a bar. 
 
-
- 
 ### ToDos:
 - I added the concept of "rounds" but didn't yet implement them in! (whoops)
 - Spend more time spent on the design and layout, as it is a bit clunky right now.  - I would also like to make it so 
 that the game's questions are asked in random orders and can be repeated.
 - I used bars for the token levels since it reminded me the most of an RPG, 
-but ideally those should be updated to have different colors. 
+but ideally those should be updated to have different colors, and actually display 0-5 nodes.
 - Improve the game's responsive styles and overall layout.
 - Save the user's progress in localStorage so they can resume the game later.
