@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-import { getGame, getTokens, getQuestions, getQuestionTokens } from '../apis/game';
-import calculateTokenLevels from '../core/tokens';
+import { getGame, getTokens, getQuestions, getQuestionTokens } from '../gameData';
+import calculateTokenLevels from '../tokens';
 import colors from '../common/colors';
 import Game from './Game';
 
