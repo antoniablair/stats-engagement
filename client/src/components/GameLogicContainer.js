@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
 import { getGame, getTokens, getQuestions, getQuestionTokens } from '../apis/game';
-import callApi from '../utils/api';
 import calculateTokenLevels from '../utils/tokens';
 import colors from '../common/colors';
 import Game from './Game';
