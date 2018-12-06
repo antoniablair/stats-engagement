@@ -2,7 +2,7 @@
 
 Check out the [application on Heroku](https://stats-engagement.herokuapp.com/).
 
-In this UI, answering certain questions affects the level of certain 'tokens', such as health or happiness.
+In this mini game, answering certain questions affects the level of certain 'tokens', such as health or happiness.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
 The front-end is a React application, with Node and Express for the backend, as well as an admin panel generated with Forest Lumber. The react component styles are handled with Aphrodite and react-animations. 
@@ -22,7 +22,7 @@ The admin panel code is stored in a [different github repo](https://github.com/a
 
 
 ### ToDos:
-- Display a "The End" screen if all rounds are over
+- Display an end screen if all rounds are over
 - Spend more time on the design and layout, especially for smaller devices
 - Make it so that the game's questions are asked in random orders and that some questions can be repeating
 - I used bars for the token levels since it reminded me the most of an RPG, 
