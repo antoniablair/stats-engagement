@@ -28,3 +28,4 @@ but ideally those should be updated to have different colors, and actually displ
 - Save the user's progress in localStorage so they can resume the game later
 - Add type checking
 - Surface any API errors to the user
+- Choose a better animation when the questions change
