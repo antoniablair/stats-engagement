@@ -52,11 +52,11 @@ class Game extends Component {
         <div className={css(styles.questionContainer)}>
           {/* Todo: Each Game should store its own image instead of hardcoding */}
           <img src={require('../images/catroom.png')} className={css(styles.image)} alt='Cat in Room' />
-          {questions.map((question, idx) => <Question text={question.text}
+          {questions ? questions.map((question, idx) => <Question text={question.text}
             key={idx}
             id={question.id}
             displayed={question.displayed}
-            answerQuestion={answerQuestion} />)}
+            answerQuestion={answerQuestion} />) : ''}
         </div>
         <div class={css(styles.progressBarContainer)}>
           {tokens.map(token => <ProgressBar name={token.name} level={token.level} key={token.name} />)}

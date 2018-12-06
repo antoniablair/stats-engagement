@@ -31,19 +31,15 @@ class GameLogicContainer extends Component {
 
   async componentDidMount() {
     const game = await getGame(this.state.gameId);
-
     if (game && game.numberOfRounds && game.name) {
       this.setState({ numberOfRounds: game.numberOfRounds, name: game.name });
     }
 
     const questions = await getQuestions(this.state.gameId);
-    this.setState({ questions });
-
     const tokens = await getTokens();
-    this.setState({ tokens });
-
     const questionTokens = await getQuestionTokens(this.state.gameId);
-    this.setState({ questionTokens });
+    
+    this.setState({ questions, tokens, questionTokens });
   }
 
   answerQuestion = (questionId, bool) => {
