@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const app = express();
 const mysql = require('mysql');
 const config = require('./config');
 
-const port = process.env.PORT || 5000;
+const app = express();
+const port = config.appPort || 5000;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -64,7 +65,7 @@ app.get('/api/game/:gameId/question_tokens', (req, res) => {
     });
 });
 
-if (process.env.NODE_ENV === 'production') {
+if (config.nodeEnv === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
   // Handle React routing, return all requests to React app
@@ -73,7 +74,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(port, () => console.log(`Listening on port ${port}`)); // eslint-disable-line
+app.listen(port, () => console.log(`Listening on port ${port}`)); // eslint-disable-line no-console
 
 process.on('SIGINT', function () {
   connection.end();
