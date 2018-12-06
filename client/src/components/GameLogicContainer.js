@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
+import { getGame, getTokens, getQuestions, getQuestionTokens } from '../apis/game';
 import callApi from '../utils/api';
 import calculateTokenLevels from '../utils/tokens';
 import colors from '../common/colors';
@@ -28,39 +29,37 @@ class GameLogicContainer extends Component {
     gameId: 5
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     // todo: surface the errors
-    callApi(`/api/game/${this.state.gameId}`)
-      .then(res => {
-        this.setState({
-          numberOfRounds: res.game.numberOfRounds,
-          name: res.game.name,
-        });
-      })
-      .catch(err => console.log(err));
+    // callApi(`/api/game/${this.state.gameId}`)
+    //   .then(res => {
+    //     this.setState({
+    //       numberOfRounds: res.game.numberOfRounds,
+    //       name: res.game.name,
+    //     });
+    //   })
+    //   .catch(err => console.log(err));
 
-    callApi(`/api/game/${this.state.gameId}/questions`)
-      .then(res => {
-        let questions = res.questions.map((q, idx) => {
-          if (idx > 0) {
-            q.displayed = false;
-          } else {
-            q.displayed = true;
-          }
-          return q;
-        });
-        this.setState({ questions: questions })
-      })
-      .catch(err => console.log(err));
+    const game = await getGame(this.state.gameId);
 
-    callApi('/api/tokens')
-      .then(res => {
-        // Add token.level numbers (4/5 to start!)
-        let tokens = res.tokens.map(t => { t.level = 4; return t });
-        this.setState({ tokens })
-      })
-      .catch(err => console.log(err));
+    this.setState({ numberOfRounds: game.numberOfRounds, name: game.name })
 
+    const questions = await getQuestions(this.state.gameId);
+    this.setState({ questions });
+
+    const tokens = await getTokens();
+    this.setState({ tokens });
+
+    // callApi('/api/tokens')
+    //   .then(res => {
+    //     // Add token.level numbers (4/5 to start!)
+    //     let tokens = res.tokens.map(t => { t.level = 4; return t });
+    //     this.setState({ tokens })
+    //   })
+    //   .catch(err => console.log(err));
+
+    // const questionTokens = await getQuestionTokens(this.state.gameId);
+    // this.setState({ questionTokens });
     callApi(`/api/game/${this.state.gameId}/question_tokens`)
       .then(res => {
         this.setState({ questionTokens: res.questionTokens })
@@ -129,6 +128,7 @@ class GameLogicContainer extends Component {
           tokens={this.state.tokens}
           answerQuestion={this.answerQuestion}
           questionTokens={this.state.questionTokens} />
+          <p>{JSON.stringify(this.state)}</p>
       </div>
     );
   }
