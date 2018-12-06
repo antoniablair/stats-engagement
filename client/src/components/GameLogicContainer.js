@@ -30,19 +30,11 @@ class GameLogicContainer extends Component {
   };
 
   async componentDidMount() {
-    // todo: surface the errors
-    // callApi(`/api/game/${this.state.gameId}`)
-    //   .then(res => {
-    //     this.setState({
-    //       numberOfRounds: res.game.numberOfRounds,
-    //       name: res.game.name,
-    //     });
-    //   })
-    //   .catch(err => console.log(err));
-
     const game = await getGame(this.state.gameId);
 
-    this.setState({ numberOfRounds: game.numberOfRounds, name: game.name })
+    if (game && game.numberOfRounds && game.name) {
+      this.setState({ numberOfRounds: game.numberOfRounds, name: game.name });
+    }
 
     const questions = await getQuestions(this.state.gameId);
     this.setState({ questions });
@@ -115,7 +107,6 @@ class GameLogicContainer extends Component {
           tokens={this.state.tokens}
           answerQuestion={this.answerQuestion}
           questionTokens={this.state.questionTokens} />
-          <p>{JSON.stringify(this.state)}</p>
       </div>
     );
   }

@@ -7,6 +7,7 @@ export const getGame = async (gameId) => {
   }
   catch (e) {
     console.log(e);
+    return '';
   }
 };
 
@@ -23,6 +24,7 @@ export const getQuestions = async (gameId) => {
     });
   } catch(e) {
     console.log(e);
+    return [];
   }
 };
 
@@ -33,6 +35,7 @@ export const getTokens = async () => {
     return res.tokens.map(t => { t.level = 4; return t });
   } catch(e) {
     console.log(e);
+    return [];
   }
 };
 
@@ -42,6 +45,7 @@ export const getQuestionTokens = async (gameId) => {
     return res.questionTokens;
   } catch(e) {
     console.log(e);
+    return [];
   }
 };
 
