@@ -4,7 +4,7 @@ Check out the [application on Heroku](https://stats-engagement.herokuapp.com/).
 <br/>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
-The front-end is a React application, with Node and Express for the backend. 
+The front-end is a React application, with Node and Express for the backend, as well as an admin panel generated with Forest Lumber. The react component styles are handled with Aphrodite and react-animations. 
 
 The db is set up with `games`, `tokens`, `questions`, and an intermediary table called 
 `question_tokens` containing the "rules" between a question and a token. 
@@ -15,7 +15,7 @@ The db is set up with `games`, `tokens`, `questions`, and an intermediary table 
 
 I used an open source library called Forest Lumber to generate an admin panel to manage this project. 
 
-The admin panel code is stored in a [different github repo]('https://github.com/antoniablair/stats-engagement-admin'), mainly to make it easier for me to deploy to Heroku.
+The admin panel code is stored in a [different github repo](https://github.com/antoniablair/stats-engagement-admin), mainly to make it easier for me to deploy to Heroku.
 
 
 ### ToDos:
