@@ -1,7 +1,7 @@
 ## About
 
 Check out the [application on Heroku](https://stats-engagement.herokuapp.com/).
-<br/>
+
 In this UI, answering certain questions affects the level of certain 'tokens', such as health or happiness.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
