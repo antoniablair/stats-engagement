@@ -50,21 +50,8 @@ class GameLogicContainer extends Component {
     const tokens = await getTokens();
     this.setState({ tokens });
 
-    // callApi('/api/tokens')
-    //   .then(res => {
-    //     // Add token.level numbers (4/5 to start!)
-    //     let tokens = res.tokens.map(t => { t.level = 4; return t });
-    //     this.setState({ tokens })
-    //   })
-    //   .catch(err => console.log(err));
-
-    // const questionTokens = await getQuestionTokens(this.state.gameId);
-    // this.setState({ questionTokens });
-    callApi(`/api/game/${this.state.gameId}/question_tokens`)
-      .then(res => {
-        this.setState({ questionTokens: res.questionTokens })
-      })
-      .catch(err => console.log(err));
+    const questionTokens = await getQuestionTokens(this.state.gameId);
+    this.setState({ questionTokens });
   }
 
   answerQuestion = (questionId, bool) => {
