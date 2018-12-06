@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     marginTop: '50px',
     marginBottom: '50px',
     '@media (min-width: 400px)': {
-        fontSize: '36px',
+      fontSize: '36px',
     }
   },
 });
@@ -51,12 +51,12 @@ class Game extends Component {
         <h1 className={css(styles.title)}>{this.props.name}</h1>
         <div className={css(styles.questionContainer)}>
           {/* Todo: Each Game should store its own image instead of hardcoding */}
-          <img src={require('../images/catroom.png')} className={css(styles.image)} alt='Cat in Room'/>
+          <img src={require('../images/catroom.png')} className={css(styles.image)} alt='Cat in Room' />
           {questions.map((question, idx) => <Question text={question.text}
-                                                      key={idx}
-                                                      id={question.id}
-                                                      displayed={question.displayed}
-                                                      answerQuestion={answerQuestion} />)}
+            key={idx}
+            id={question.id}
+            displayed={question.displayed}
+            answerQuestion={answerQuestion} />)}
         </div>
         <div class={css(styles.progressBarContainer)}>
           {tokens.map(token => <ProgressBar name={token.name} level={token.level} key={token.name} />)}

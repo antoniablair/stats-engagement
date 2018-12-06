@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     backgroundColor: colors.white,
     width: '352px',
-    height:  'auto',
+    height: 'auto',
     minHeight: '200px',
     marginBottom: '25px',
     fontSize: '25px',
@@ -64,8 +64,8 @@ const Question = ({ text, id, answerQuestion, displayed }) => (
   <div className={displayed ? css(styles.card, styles.bounceIn) : css(styles.hide)}>
     <p className={css(styles.text)}>{text}</p>
     <div className={css(styles.action)}>
-      <div className={css(styles.button)} onClick={() => {answerQuestion(id, true)}}>Yes</div>
-      <div className={css(styles.button)} onClick={() => {answerQuestion(id, false)}}>No</div>
+      <div className={css(styles.button)} onClick={() => { answerQuestion(id, true) }}>Yes</div>
+      <div className={css(styles.button)} onClick={() => { answerQuestion(id, false) }}>No</div>
     </div>
   </div>
 );

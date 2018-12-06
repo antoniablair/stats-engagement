@@ -3,5 +3,7 @@ module.exports = {
   user: process.env.USER_NAME,
   password: process.env.PASSWORD,
   database: process.env.DB,
-  port: process.env.DBPORT
+  port: process.env.DBPORT,
+  serverPort: process.env.PORT,
+  nodeEnv: process.env.NODE_ENV,
 };

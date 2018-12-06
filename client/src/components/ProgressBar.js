@@ -22,19 +22,19 @@ const styles = StyleSheet.create({
 });
 
 const Filler = ({ percentage }) => {
-  return <div className={css(styles.filler)} style={{width: `${percentage}%`}} />
+  return <div className={css(styles.filler)} style={{ width: `${percentage}%` }} />
 };
 
 const ProgressBar = ({ name, level }) => {
   // todo: make backend support more than 0-5
   const percentage = ((level / 5) * 100);
   return (
-  <div>
-    <p>{name}</p>
-    <div className={css(styles.progressBar)}>
-      <Filler percentage={percentage} />
-    </div>
-  </div>)
+    <div>
+      <p>{name}</p>
+      <div className={css(styles.progressBar)}>
+        <Filler percentage={percentage} />
+      </div>
+    </div>)
 };
 
 export default ProgressBar;
