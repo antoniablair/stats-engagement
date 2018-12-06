@@ -23,6 +23,7 @@ export const getQuestions = async (gameId) => {
       } else {
         q.displayed = true;
       }
+      q.answered = false;
       return q;
     });
   } catch(e) {

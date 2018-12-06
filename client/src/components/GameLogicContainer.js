@@ -72,18 +72,18 @@ class GameLogicContainer extends Component {
     // todo: limit the number of questions shown to state.numberOfRounds
     const unansweredQuestions = this.state.questions.filter(q => (
       q.id !== questionId &&
-      q.displayed === false
+      q.answered === false
     ));
 
     const answeredQuestions = this.state.questions.filter(q => (
       q.id !== questionId &&
-      q.displayed === true
+      q.answered === true
     ));
 
     const answeredQuestion = this.hideAnsweredQuestion(questionId);
     let nextQuestion;
 
-    if (unansweredQuestions.length && (answeredQuestions.length < this.state.numberOfRounds)) {
+    if (unansweredQuestions.length && (answeredQuestions.length + 1 < this.state.numberOfRounds)) {
       // todo: pick a new one more randomly
       nextQuestion = unansweredQuestions[0];
       nextQuestion.displayed = true;
