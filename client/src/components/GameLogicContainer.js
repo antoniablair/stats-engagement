@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
 import { getGame, getTokens, getQuestions, getQuestionTokens } from '../apis/game';
-import calculateTokenLevels from '../utils/tokens';
+import calculateTokenLevels from '../core/tokens';
 import colors from '../common/colors';
 import Game from './Game';
 
@@ -30,15 +30,16 @@ class GameLogicContainer extends Component {
 
   async componentDidMount() {
     const game = await getGame(this.state.gameId);
-    if (game && game.numberOfRounds && game.name) {
-      this.setState({ numberOfRounds: game.numberOfRounds, name: game.name });
-    }
-
     const questions = await getQuestions(this.state.gameId);
     const tokens = await getTokens();
     const questionTokens = await getQuestionTokens(this.state.gameId);
     
-    this.setState({ questions, tokens, questionTokens });
+    if (game && questions && tokens && questionTokens) {
+      this.setState({ questions, tokens, questionTokens });
+      if (game.numberOfRounds && game.name) {
+        this.setState({ numberOfRounds: game.numberOfRounds, name: game.name });
+      }
+    }
   }
 
   answerQuestion = (questionId, bool) => {

@@ -1,3 +1,7 @@
+/**
+ * Calls for setting up the game
+ */
+
 // todo: surface the errors
 
 export const getGame = async (gameId) => {
