@@ -7,8 +7,8 @@ const calculateTokenLevels = (affectedToken, questionToken, bool) => {
     token.level += parseInt(questionToken.points_if_false);
   }
 
-  token.level = token.level > 5 ? token.level : 5;
-  token.level = token.level < 0 ? token.level : 0;
+  token.level = token.level > 5 ? 5 : token.level;
+  token.level = token.level < 0 ? 0 : token.level;
 
   return token;
 };
