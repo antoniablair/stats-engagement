@@ -10,11 +10,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
-  host     : config.host,
-  user     : config.user,
-  password : config.password,
-  database : config.database,
-  port     : config.port
+  host: config.host,
+  user: config.user,
+  password: config.password,
+  database: config.database,
+  port: config.port
 });
 
 connection.connect();
@@ -22,7 +22,7 @@ connection.connect();
 // API calls
 app.get('/api/game/:gameId', (req, res) => {
   const gameId = req.params.gameId;
-  connection.query(`SELECT * FROM games WHERE id = ${gameId};`, function (error, results, fields) {
+  connection.query(`SELECT * FROM games WHERE id = ${gameId};`, function (error, results) {
     if (error) throw error;
     res.send({ game: results[0] });
   });
@@ -32,14 +32,14 @@ app.get('/api/game/:gameId/questions', (req, res) => {
   const gameId = req.params.gameId;
   connection.query(
     `SELECT q.* FROM questions q JOIN games g ON q.game_id = g.id WHERE g.id = ${gameId};`,
-  function (error, results, fields) {
-    if (error) throw error;
-    res.send({ questions: results });
-  });
+    function (error, results) {
+      if (error) throw error;
+      res.send({ questions: results });
+    });
 });
 
 app.get('/api/tokens', (req, res) => {
-  connection.query('SELECT * FROM tokens;', function (error, results, fields) {
+  connection.query('SELECT * FROM tokens;', function (error, results) {
     if (error) throw error;
     res.send({ tokens: results });
   });
@@ -58,25 +58,24 @@ app.get('/api/game/:gameId/question_tokens', (req, res) => {
           JOIN games g ON q.game_id = g.id 
           WHERE g.id = ${gameId}
          );
-    `, function (error, results, fields) {
-    if (error) throw error;
-    res.send({ questionTokens: results });
-  });
+    `, function (error, results) {
+      if (error) throw error;
+      res.send({ questionTokens: results });
+    });
 });
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
   // Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
+  app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`Listening on port ${port}`)); // eslint-disable-line
 
-process.on('SIGINT', function() {
-	connection.end();
-    listeners = process.listeners('SIGINT');
-    process.exit();
+process.on('SIGINT', function () {
+  connection.end();
+  process.exit();
 });
