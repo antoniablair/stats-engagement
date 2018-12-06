@@ -1,20 +1,20 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import path from 'path';
-import mysql from 'mysql';
-import config from './config';
-
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 const app = express();
-const port = config.serverPort || 5000;
+const mysql = require('mysql');
+const config = require('./config');
+
+const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
-  host: config.host,
-  user: config.user,
-  password: config.password,
-  database: config.database,
-  port: config.port
+  host     : config.host,
+  user     : config.user,
+  password : config.password,
+  database : config.database,
+  port     : config.port
 });
 
 connection.connect();
@@ -22,7 +22,7 @@ connection.connect();
 // API calls
 app.get('/api/game/:gameId', (req, res) => {
   const gameId = req.params.gameId;
-  connection.query(`SELECT * FROM games WHERE id = ${gameId};`, function (error, results) {
+  connection.query(`SELECT * FROM games WHERE id = ${gameId};`, function (error, results, fields) {
     if (error) throw error;
     res.send({ game: results[0] });
   });
@@ -32,15 +32,14 @@ app.get('/api/game/:gameId/questions', (req, res) => {
   const gameId = req.params.gameId;
   connection.query(
     `SELECT q.* FROM questions q JOIN games g ON q.game_id = g.id WHERE g.id = ${gameId};`,
-    function (error, results) {
-      if (error) throw error;
-      res.send({ questions: results });
-    });
+  function (error, results, fields) {
+    if (error) throw error;
+    res.send({ questions: results });
+  });
 });
 
-// todo: update this to be per game also
 app.get('/api/tokens', (req, res) => {
-  connection.query('SELECT * FROM tokens;', function (error, results) {
+  connection.query('SELECT * FROM tokens;', function (error, results, fields) {
     if (error) throw error;
     res.send({ tokens: results });
   });
@@ -59,24 +58,25 @@ app.get('/api/game/:gameId/question_tokens', (req, res) => {
           JOIN games g ON q.game_id = g.id 
           WHERE g.id = ${gameId}
          );
-    `, function (error, results) {
-      if (error) throw error;
-      res.send({ questionTokens: results });
-    });
+    `, function (error, results, fields) {
+    if (error) throw error;
+    res.send({ questionTokens: results });
+  });
 });
 
-if (config.nodeEnv === 'production') {
+if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
   // Handle React routing, return all requests to React app
-  app.get('*', function (req, res) {
+  app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
 
-app.listen(port, () => console.log(`Listening on port ${port}`)); // eslint-disable-line no-console
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
-process.on('SIGINT', function () {
-  connection.end();
-  process.exit();
+process.on('SIGINT', function() {
+	connection.end();
+    listeners = process.listeners('SIGINT');
+    process.exit();
 });
