@@ -19,6 +19,7 @@ The admin panel code is stored in a [different github repo](https://github.com/a
 
 
 ### ToDos:
+- Display a "The End" screen if all rounds are over
 - Spend more time on the design and layout, especially for smaller devices
 - Make it so that the game's questions are asked in random orders and that some questions can be repeating
 - I used bars for the token levels since it reminded me the most of an RPG, 
