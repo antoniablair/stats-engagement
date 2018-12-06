@@ -17,7 +17,7 @@ The db is set up with `games`, `tokens`, `questions`, and an intermediary table 
 ###  Admin
 
 I used an open source library called [Forest Lumber](https://www.forestadmin.com/lumber/) to generate an admin panel to manage this project. 
-
+<hr/>
 <img src="https://github.com/antoniablair/stats-engagement/blob/master/client/src/images/forestadminadd.png">
 
 The admin panel code is stored in a [different github repo](https://github.com/antoniablair/stats-engagement-admin), mainly to make it easier for me to deploy to Heroku.
