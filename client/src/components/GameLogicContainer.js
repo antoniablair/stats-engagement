@@ -39,6 +39,7 @@ class GameLogicContainer extends Component {
       if (game.numberOfRounds && game.name) {
         this.setState({ numberOfRounds: game.numberOfRounds, name: game.name });
       }
+      // todo: show error states
     }
   }
 
