@@ -2,6 +2,7 @@
 
 Check out the [application on Heroku](https://stats-engagement.herokuapp.com/).
 <br/>
+In this UI, answering certain questions affects the level of certain 'tokens', such as health or happiness.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
 The front-end is a React application, with Node and Express for the backend, as well as an admin panel generated with Forest Lumber. The react component styles are handled with Aphrodite and react-animations. 
