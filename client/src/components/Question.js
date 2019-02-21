@@ -9,12 +9,13 @@ const styles = StyleSheet.create({
   card: {
     marginRight: 'auto',
     marginLeft: 'auto',
-    backgroundColor: colors.white,
+    backgroundColor: colors.riptide,
     width: '352px',
     height: 'auto',
     minHeight: '200px',
     marginBottom: '25px',
-    fontSize: '25px',
+    fontFamily: 'IBM Plex Mono', monospace,
+    fontSize: '18px',
   },
   bounceIn: {
     animationName: bounceIn,
@@ -24,13 +25,13 @@ const styles = StyleSheet.create({
     display: 'none',
   },
   text: {
-    color: colors.grey,
+    color: colors.gray20,
     padding: '15px',
     height: '135px',
   },
   action: {
-    backgroundColor: colors.white,
-    color: colors.purple,
+    backgroundColor: colors.honeydew,
+    color: colors.steelBlue,
     textTransform: 'uppercase',
     display: 'flex',
     justifyContent: 'space-around',
@@ -38,12 +39,14 @@ const styles = StyleSheet.create({
   },
   button: {
     minWidth: '50px',
-    backgroundColor: colors.blueGrey,
-    borderColor: colors.blueGrey,
-    color: colors.white,
+    backgroundColor: colors.steelBlue,
+    borderColor: colors.steelBlue,
+    color: colors.honeydew,
     height: '40px',
-    fontSize: '12px',
+    fontFamily: 'IBM Plex Mono', monospace,
+    fontSize: '15px',
     textDecoration: 'none',
+    letterSpacing: '1px',
     lineHeight: '40px',
     verticalAlign: 'middle',
     paddingRight: '10px',
@@ -54,8 +57,8 @@ const styles = StyleSheet.create({
     boxShadow: '0 1px 4px rgba(0, 0, 0, .3)',
     ':hover': {
       cursor: 'pointer',
-      backgroundColor: colors.blueGrey,
-      borderColor: colors.blueGrey,
+      backgroundColor: colors.steelBlue,
+      borderColor: colors.steelBlue,
     }
   },
 });

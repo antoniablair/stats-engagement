@@ -9,16 +9,25 @@ const styles = StyleSheet.create({
     height: '20px',
     width: '350px',
     borderRadius: '50px',
-    border: '1px solid #fff',
-    backgroundColor: colors.white,
+    border: '1px solid #f0fff0',
+    backgroundColor: colors.honeydew,
   },
 
   filler: {
-    background: colors.blueGrey,
+    background: colors.steelBlue,
     height: '100%',
     borderRadius: 'inherit',
     transition: 'width .2s ease-in',
+  },
+
+  vitalsCategory: {
+    color: colors.honeydew,
+    fontFamily: 'IBM Plex Mono', monospace,
+    fontSize: '15px',
+    letterSpacing: '4px',
+    textTransform: 'uppercase',
   }
+
 });
 
 const Filler = ({ percentage }) => {
@@ -30,7 +39,7 @@ const ProgressBar = ({ name, level }) => {
   const percentage = ((level / 5) * 100);
   return (
     <div>
-      <p>{name}</p>
+      <p className={css(styles.vitalsCategory)}>{name}</p>
       <div className={css(styles.progressBar)}>
         <Filler percentage={percentage} />
       </div>
