@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: '19px',
-    fontFamily: 'IBM Plex Mono',
+    fontFamily: 'IBM Plex Mono', monospace,
     color: 'honeydew',
     marginTop: '50px',
     marginBottom: '50px',
