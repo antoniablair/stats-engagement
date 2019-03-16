@@ -32,9 +32,12 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
   },
   title: {
-    fontSize: '18px',
+    fontSize: '19px',
+    fontFamily: 'IBM Plex Mono', monospace,
+    color: 'honeydew',
     marginTop: '50px',
     marginBottom: '50px',
+    padding: '0 16px',
     '@media (min-width: 400px)': {
       fontSize: '36px',
     }
@@ -48,7 +51,7 @@ class Game extends Component {
     const answerQuestion = this.props.answerQuestion;
     return (
       <div>
-        <h1 className={css(styles.title)}>{this.props.name}</h1>
+        <h1 className={css(styles.title)}>{this.props.name}</h1> 
         <div className={css(styles.questionContainer)}>
           {/* Todo: Each Game should store its own image instead of hardcoding */}
           <img src={require('../images/catroom.png')} className={css(styles.image)} alt='Cat in Room' />
